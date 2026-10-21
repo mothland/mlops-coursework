@@ -84,7 +84,8 @@ def git_identity() -> dict:
         except (OSError, subprocess.CalledProcessError):
             return None
 
-    status = git("status", "--porcelain")
+    # Only tracked files identify the code; untracked outputs (e.g. evidence copies) do not.
+    status = git("status", "--porcelain", "--untracked-files=no")
     return {"commit": git("rev-parse", "HEAD"), "dirty": bool(status) if status is not None else None}
 
 
