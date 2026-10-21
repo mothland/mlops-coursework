@@ -111,10 +111,13 @@ The SHA-256 hash (`16320c9c1ec72448db59aa0a26a0b95401046bef5d02fd3aeb906448e3055
 
 ## Part E
 
-- PR URL:
-- Reviewer question:
-- Response:
-- Relevant commit hash: `d362860` (Document reproducible Telco onboarding)
+- PR URL: https://github.com/mothland/mlops-coursework/pull/2
+- Reviewer question (@latomate07): "Does the README explain what the lock file cannot reproduce?"
+- Response: it did not. Added a "What is not reproduced (yet)" section to the README (interpreter/OS/hardware, data, uncommitted code, training results, data quality), then merged.
+- Relevant commit hashes:
+  - `d362860` Document reproducible Telco onboarding
+  - `5614a63` Document what the lock file cannot reproduce (review fix)
+  - `9014a28` Merge pull request #2 (merge into `main`)
 
 ## Part F
 
