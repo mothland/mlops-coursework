@@ -1,0 +1,5 @@
+selected             max diff=1.11e-16 classes identical=True pid=42780 passed=True
+baseline             max diff=0 classes identical=True pid=39696 passed=True
+decision_tree        max diff=1.11e-16 classes identical=True pid=42536 passed=True
+logistic_regression  max diff=1.11e-16 classes identical=True pid=40220 passed=True
+random_forest        max diff=1.11e-16 classes identical=True pid=15884 passed=True

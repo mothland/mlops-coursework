@@ -1,0 +1,31 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.15, pytest-9.1.1, pluggy-1.7.0
+rootdir: .
+configfile: pyproject.toml
+testpaths: tests
+collected 12 items
+
+tests\test_import.py .                                                   [  8%]
+tests\test_pipeline.py ...........                                       [100%]
+
+============================== warnings summary ===============================
+tests/test_pipeline.py::test_imputer_medians_come_from_training_only
+  .\.venv\Lib\site-packages\sklearn\linear_model\_logistic.py:455: DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0.
+    opt_res = optimize.minimize(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=================================== PASSES ====================================
+=========================== short test summary info ===========================
+PASSED tests/test_import.py::test_version
+PASSED tests/test_pipeline.py::test_customer_ids_are_disjoint_and_complete
+PASSED tests/test_pipeline.py::test_split_is_reproducible
+PASSED tests/test_pipeline.py::test_imputer_medians_come_from_training_only
+PASSED tests/test_pipeline.py::test_scaler_mean_comes_from_training_only
+PASSED tests/test_pipeline.py::test_predict_does_not_refit
+PASSED tests/test_pipeline.py::test_blank_numeric_is_missing_but_malformed_text_fails
+PASSED tests/test_pipeline.py::test_missing_numeric_uses_training_median
+PASSED tests/test_pipeline.py::test_unseen_category_is_encoded_as_zeros
+PASSED tests/test_pipeline.py::test_missing_required_feature_fails_visibly
+PASSED tests/test_pipeline.py::test_identifier_and_target_never_reach_the_model
+PASSED tests/test_pipeline.py::test_reload_in_fresh_process_matches
+======================== 12 passed, 1 warning in 2.89s ========================

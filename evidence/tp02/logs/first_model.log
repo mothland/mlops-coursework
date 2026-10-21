@@ -1,0 +1,37 @@
+{
+  "positive_class": "Churn = Yes (1)",
+  "features": [
+    "tenure",
+    "MonthlyCharges"
+  ],
+  "seed": 42,
+  "confusion_matrix_layout": "rows = actual [0 No, 1 Yes], columns = predicted [0 No, 1 Yes]",
+  "majority_baseline": {
+    "accuracy": 0.7345635202271115,
+    "confusion_matrix": [
+      [
+        1035,
+        0
+      ],
+      [
+        374,
+        0
+      ]
+    ],
+    "predicted_churners": 0
+  },
+  "logistic_regression": {
+    "accuracy": 0.7828246983676366,
+    "confusion_matrix": [
+      [
+        950,
+        85
+      ],
+      [
+        221,
+        153
+      ]
+    ],
+    "predicted_churners": 238
+  }
+}

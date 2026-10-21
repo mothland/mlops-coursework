@@ -1,0 +1,15 @@
+{
+  "artifact": "artifacts/tp02/pipeline.joblib",
+  "artifact_sha256": "ff4040a2980336dd104d0769ff779c67bfd46410d9d6ae845d5ca5bb4ecb289b",
+  "input": "artifacts/tp02/inference_sample.csv",
+  "reference": "artifacts/tp02/reference_predictions.csv",
+  "rows": 20,
+  "threshold": 0.5,
+  "max_abs_probability_difference": 1.1102230246251565e-16,
+  "tolerance": 1e-12,
+  "class_predictions_identical": true,
+  "passed": true,
+  "fit_called": false,
+  "labels_in_input": false,
+  "process_id": 42780
+}

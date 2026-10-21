@@ -1,0 +1,6 @@
+baseline             AP=0.2654 F1=0.0000 acc=0.7346 fit=0.01s
+logistic_regression  AP=0.6475 F1=0.5893 acc=0.8041 fit=0.02s
+decision_tree        AP=0.6173 F1=0.6181 acc=0.8027 fit=0.01s
+random_forest        AP=0.6642 F1=0.5561 acc=0.7949 fit=0.27s
+selected: random_forest
+saved artifacts\tp02\pipeline.joblib and artifacts\tp02\metadata.json

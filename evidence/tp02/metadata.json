@@ -1,0 +1,195 @@
+{
+  "created_at": "2026-10-21T17:42:56+00:00",
+  "artifact": {
+    "path": "artifacts/tp02/pipeline.joblib",
+    "sha256": "ff4040a2980336dd104d0769ff779c67bfd46410d9d6ae845d5ca5bb4ecb289b"
+  },
+  "candidate_artifacts": {
+    "baseline": {
+      "path": "artifacts/tp02/candidates/baseline/pipeline.joblib",
+      "sha256": "0f06d2f33f76cf5ce90225de79a34340af9a1676c3cdf6a7239e109882663d36"
+    },
+    "logistic_regression": {
+      "path": "artifacts/tp02/candidates/logistic_regression/pipeline.joblib",
+      "sha256": "259df3c524c8ae21cd5a5b7f4a10f9a21b23fcb9d9b6cabb1e1a3f1adea67599"
+    },
+    "decision_tree": {
+      "path": "artifacts/tp02/candidates/decision_tree/pipeline.joblib",
+      "sha256": "b6f763fde66bed2e5d8932a7c32486511d9d92f78c0d19c533be2a23375afd9a"
+    },
+    "random_forest": {
+      "path": "artifacts/tp02/candidates/random_forest/pipeline.joblib",
+      "sha256": "ff4040a2980336dd104d0769ff779c67bfd46410d9d6ae845d5ca5bb4ecb289b"
+    }
+  },
+  "source": {
+    "path": "data/raw/telco.csv",
+    "sha256": "16320c9c1ec72448db59aa0a26a0b95401046bef5d02fd3aeb906448e3055e91"
+  },
+  "config": {
+    "path": "configs/tp02.json",
+    "sha256": "b40fa76ca969dfdf42782f837ac724d6c4153251b8d3519c03638e3f392f8303"
+  },
+  "split": {
+    "seed": 42,
+    "fractions": {
+      "train": 0.6,
+      "valid": 0.2,
+      "test": 0.2
+    },
+    "stratified_on": "Churn",
+    "counts": {
+      "train": 4225,
+      "valid": 1409,
+      "test": 1409
+    },
+    "churn_rate": {
+      "train": 0.26532544378698225,
+      "valid": 0.2654364797728886,
+      "test": 0.2654364797728886
+    },
+    "allocation_file": "artifacts/tp02/split_allocation.csv",
+    "allocation_sha256": "bf235075965a5a6260a2d2c4b9e66b0bd39325440d6118395c140fd4e2fafeb6",
+    "test_evaluated": false
+  },
+  "features": {
+    "identifier_not_input": "customerID",
+    "target": "Churn",
+    "positive_class": {
+      "label": "Yes",
+      "encoded_as": 1
+    },
+    "numeric": [
+      "tenure",
+      "MonthlyCharges",
+      "TotalCharges"
+    ],
+    "categorical": [
+      "Contract",
+      "InternetService",
+      "PaymentMethod"
+    ],
+    "input_types": {
+      "numeric": "float; NaN, blank or whitespace-only = missing (imputed); other text rejected",
+      "categorical": "string; blank = missing (imputed); unseen values encoded as all zeros"
+    }
+  },
+  "preprocessing": {
+    "numeric": {
+      "columns": [
+        "tenure",
+        "MonthlyCharges",
+        "TotalCharges"
+      ],
+      "imputer": "SimpleImputer(strategy='median')  # training medians",
+      "scaler": "StandardScaler()  # training mean / std"
+    },
+    "categorical": {
+      "columns": [
+        "Contract",
+        "InternetService",
+        "PaymentMethod"
+      ],
+      "imputer": "SimpleImputer(strategy='most_frequent')  # training mode",
+      "encoder": "OneHotEncoder(handle_unknown='ignore', sparse_output=False)",
+      "unknown_category_policy": "encoded as all zeros for that column (no error)"
+    }
+  },
+  "fitted_statistics": {
+    "numeric_imputer_medians": {
+      "tenure": 29.0,
+      "MonthlyCharges": 70.55,
+      "TotalCharges": 1373.625
+    },
+    "scaler_means": {
+      "tenure": 32.44284023668639,
+      "MonthlyCharges": 64.89450887573965,
+      "TotalCharges": 2297.7652366863904
+    }
+  },
+  "model": {
+    "name": "random_forest",
+    "kind": "random_forest",
+    "class": "RandomForestClassifier",
+    "params": {
+      "bootstrap": "True",
+      "ccp_alpha": "0.0",
+      "class_weight": "None",
+      "criterion": "'gini'",
+      "max_depth": "8",
+      "max_features": "'sqrt'",
+      "max_leaf_nodes": "None",
+      "max_samples": "None",
+      "min_impurity_decrease": "0.0",
+      "min_samples_leaf": "10",
+      "min_samples_split": "2",
+      "min_weight_fraction_leaf": "0.0",
+      "monotonic_cst": "None",
+      "n_estimators": "300",
+      "n_jobs": "-1",
+      "oob_score": "False",
+      "random_state": "42",
+      "verbose": "0",
+      "warm_start": "False"
+    }
+  },
+  "threshold": 0.5,
+  "selection": {
+    "metric": "average_precision",
+    "tie_tolerance": 0.01,
+    "simplicity_order": [
+      "logistic_regression",
+      "decision_tree",
+      "random_forest"
+    ],
+    "rule": "Highest validation average precision among learned candidates; any candidate within tie_tolerance of the best is a tie, and ties go to the earliest (simplest) in simplicity_order.",
+    "selected": "random_forest"
+  },
+  "validation_metrics": {
+    "model": "random_forest",
+    "kind": "random_forest",
+    "params": "{\"max_depth\": 8, \"min_samples_leaf\": 10, \"n_estimators\": 300, \"n_jobs\": -1, \"random_state\": 42}",
+    "fit_seconds": 0.2713,
+    "threshold": 0.5,
+    "average_precision": 0.6641660575416509,
+    "precision": 0.6534296028880866,
+    "recall": 0.4839572192513369,
+    "f1": 0.5560675883256528,
+    "accuracy": 0.794889992902768,
+    "tn": 939,
+    "fp": 96,
+    "fn": 193,
+    "tp": 181
+  },
+  "baseline_validation_metrics": {
+    "model": "baseline",
+    "kind": "dummy",
+    "params": "{\"strategy\": \"most_frequent\"}",
+    "fit_seconds": 0.0074,
+    "threshold": 0.5,
+    "average_precision": 0.2654364797728886,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "accuracy": 0.7345635202271115,
+    "tn": 1035,
+    "fp": 0,
+    "fn": 374,
+    "tp": 0
+  },
+  "code": {
+    "commit": "f4442db974a24d9263d2eb19207b4d08e611b3f4",
+    "dirty": false
+  },
+  "environment": {
+    "python": "3.11.15 (main, Apr 14 2026, 14:31:26) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "packages": {
+      "churnlab": "0.1.0",
+      "scikit-learn": "1.5.2",
+      "pandas": "2.2.3",
+      "numpy": "1.26.4",
+      "joblib": "1.6.0"
+    }
+  }
+}
