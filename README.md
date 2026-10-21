@@ -67,3 +67,17 @@ treatment assignments and present them as IBM data.
 | `reports/` | Generated reports (ignored; copy small evidence to `evidence/`) |
 | `evidence/` | Non-sensitive TP evidence committed for submission |
 | `k8s/`, `pipelines/` | Deployment and orchestration (later TPs) |
+
+## What is not reproduced (yet)
+
+`uv.lock` pins the exact package versions and their file hashes. It does **not** reproduce:
+
+- **The interpreter, OS and hardware:** only the Python version range is constrained; the exact
+  Python build, OS, CPU and numerical libraries (BLAS) can differ between machines.
+- **The data:** uv does not track `data/raw/telco.csv`; the SHA-256 check in
+  `scripts/inspect_telco.py` covers that.
+- **Uncommitted code:** a commit only identifies what was committed, not local edits.
+- **Training results:** random seeds, data splits, hyper-parameters and configuration are not
+  recorded yet, so future training runs are not guaranteed to give identical models or metrics.
+- **Data quality:** a matching hash proves we used the same bytes, not that the labels are correct
+  or that the features are free of leakage.
