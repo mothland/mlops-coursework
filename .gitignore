@@ -1,0 +1,32 @@
+# Environments
+.venv/
+.venv-backup/
+.venv-backup-*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Secrets and local state
+.env
+.env.*
+.idea/
+.vscode/
+.DS_Store
+
+# Data: raw CSV is fetched by scripts/download_data.py; keep source metadata
+data/raw/*
+!data/raw/telco.source.json
+data/processed/*
+!data/processed/.gitkeep
+/datasets.csv
+
+# Generated outputs
+artifacts/*
+!artifacts/.gitkeep
+reports/*
+!reports/.gitkeep
+mlruns/
+*.pkl
+*.joblib
+*.h5
+*.keras

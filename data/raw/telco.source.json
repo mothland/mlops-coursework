@@ -1,0 +1,9 @@
+{
+  "source_url": "https://raw.githubusercontent.com/IBM/telco-customer-churn-on-icp4d/1fd6fd70906479be1712e64cfc0ea89f58466629/data/Telco-Customer-Churn.csv",
+  "source_repository": "https://github.com/IBM/telco-customer-churn-on-icp4d",
+  "source_commit": "1fd6fd70906479be1712e64cfc0ea89f58466629",
+  "local_path": "data/raw/telco.csv",
+  "sha256": "16320c9c1ec72448db59aa0a26a0b95401046bef5d02fd3aeb906448e3055e91",
+  "bytes": 970457,
+  "retrieved_at": "2026-10-21T15:28:04+00:00"
+}
