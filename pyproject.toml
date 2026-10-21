@@ -5,6 +5,7 @@ description = "IBM Telco customer churn prediction project (ESILV MLOps course)"
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
 dependencies = [
+    "joblib>=1.4,<2",
     "numpy~=1.26.0",
     "pandas>=2.2,<2.3",
     "scikit-learn>=1.5,<1.6",
