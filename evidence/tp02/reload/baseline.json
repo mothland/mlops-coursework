@@ -1,0 +1,15 @@
+{
+  "artifact": "artifacts/tp02/candidates/baseline/pipeline.joblib",
+  "artifact_sha256": "0f06d2f33f76cf5ce90225de79a34340af9a1676c3cdf6a7239e109882663d36",
+  "input": "artifacts/tp02/inference_sample.csv",
+  "reference": "artifacts/tp02/candidates/baseline/reference_predictions.csv",
+  "rows": 20,
+  "threshold": 0.5,
+  "max_abs_probability_difference": 0.0,
+  "tolerance": 1e-12,
+  "class_predictions_identical": true,
+  "passed": true,
+  "fit_called": false,
+  "labels_in_input": false,
+  "process_id": 39696
+}
