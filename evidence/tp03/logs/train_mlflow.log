@@ -1,0 +1,53 @@
+2026/11/18 09:26:35 INFO mlflow.tracking.fluent: Experiment with name 'telco-churn-tp03' does not exist. Creating a new experiment.
+.\.venv\Lib\site-packages\mlflow\data\dataset_source_registry.py:148: UserWarning: The specified dataset source can be interpreted in multiple ways: LocalArtifactDatasetSource, LocalArtifactDatasetSource. MLflow will assume that this is a LocalArtifactDatasetSource source.
+  return _dataset_source_registry.resolve(
+.\.venv\Lib\site-packages\mlflow\data\dataset_source_registry.py:148: UserWarning: The specified dataset source can be interpreted in multiple ways: LocalArtifactDatasetSource, LocalArtifactDatasetSource. MLflow will assume that this is a LocalArtifactDatasetSource source.
+  return _dataset_source_registry.resolve(
+.\.venv\Lib\site-packages\mlflow\types\utils.py:440: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details.
+  warnings.warn(
+2026/11/18 09:26:36 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in .
+2026/11/18 09:26:36 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+2026/11/18 09:26:36 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in .
+2026/11/18 09:26:36 INFO mlflow.utils.environment: Detected uv project at .. Attempting to export requirements via 'uv export'.
+2026/11/18 09:26:36 INFO mlflow.utils.uv_utils: Exported 92 dependencies via uv
+2026/11/18 09:26:36 INFO mlflow.utils.environment: Successfully exported 92 requirements from uv project. Skipping package capture based inference.
+2026/11/18 09:26:37 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
+2026/11/18 09:26:38 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in .
+2026/11/18 09:26:38 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+2026/11/18 09:26:38 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in .
+2026/11/18 09:26:38 INFO mlflow.utils.environment: Detected uv project at .. Attempting to export requirements via 'uv export'.
+2026/11/18 09:26:38 INFO mlflow.utils.uv_utils: Exported 92 dependencies via uv
+2026/11/18 09:26:38 INFO mlflow.utils.environment: Successfully exported 92 requirements from uv project. Skipping package capture based inference.
+2026/11/18 09:26:38 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
+2026/11/18 09:26:39 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in .
+2026/11/18 09:26:39 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+2026/11/18 09:26:39 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in .
+2026/11/18 09:26:39 INFO mlflow.utils.environment: Detected uv project at .. Attempting to export requirements via 'uv export'.
+2026/11/18 09:26:39 INFO mlflow.utils.uv_utils: Exported 92 dependencies via uv
+2026/11/18 09:26:39 INFO mlflow.utils.environment: Successfully exported 92 requirements from uv project. Skipping package capture based inference.
+2026/11/18 09:26:39 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
+2026/11/18 09:26:41 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in .
+2026/11/18 09:26:41 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+2026/11/18 09:26:41 INFO mlflow.utils.uv_utils: Detected uv project: found uv.lock and pyproject.toml in .
+2026/11/18 09:26:41 INFO mlflow.utils.environment: Detected uv project at .. Attempting to export requirements via 'uv export'.
+2026/11/18 09:26:41 INFO mlflow.utils.uv_utils: Exported 92 dependencies via uv
+2026/11/18 09:26:41 INFO mlflow.utils.environment: Successfully exported 92 requirements from uv project. Skipping package capture based inference.
+2026/11/18 09:26:41 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
+Successfully registered model 'telco-churn'.
+2026/11/18 09:26:42 INFO mlflow.store.model_registry.abstract_store: Waiting up to 300 seconds for model version to finish creation. Model name: telco-churn, version 1
+Created version '1' of model 'telco-churn'.
+baseline-most-frequent   run=7fe99dc83cc04a7fb657f254b8ee026c AP=0.2654 P=0.0000 R=0.0000 F1=0.0000
+🏃 View run baseline-most-frequent at: http://127.0.0.1:5000/#/experiments/1/runs/7fe99dc83cc04a7fb657f254b8ee026c
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/1
+logistic-default-C1      run=f07af8aad75941e3825cf8992e2a7326 AP=0.6475 P=0.6644 R=0.5294 F1=0.5893
+🏃 View run logistic-default-C1 at: http://127.0.0.1:5000/#/experiments/1/runs/f07af8aad75941e3825cf8992e2a7326
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/1
+tree-depth5-leaf20       run=5939abada7fa48a8b9bfe8664904e455 AP=0.6173 P=0.6356 R=0.6016 F1=0.6181
+🏃 View run tree-depth5-leaf20 at: http://127.0.0.1:5000/#/experiments/1/runs/5939abada7fa48a8b9bfe8664904e455
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/1
+forest-300trees-depth8   run=5b1981633e2946a68ce4d2f09225ea95 AP=0.6642 P=0.6534 R=0.4840 F1=0.5561
+🏃 View run forest-300trees-depth8 at: http://127.0.0.1:5000/#/experiments/1/runs/5b1981633e2946a68ce4d2f09225ea95
+🧪 View experiment at: http://127.0.0.1:5000/#/experiments/1
+selected: random_forest (forest-300trees-depth8)
+registered telco-churn version 1 -> alias @candidate
+saved artifacts\tp03\handover.json and artifacts\tp03\comparison.csv

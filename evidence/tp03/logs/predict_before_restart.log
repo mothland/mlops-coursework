@@ -1,0 +1,25 @@
+alias models:/telco-churn@candidate -> version 1 (source run 5b1981633e2946a68ce4d2f09225ea95)
+logged model source: models:/m-739141086bfe4c528d38d2908d526cd7
+customerID  churn_probability  churn_predicted
+1777-JYQPJ           0.466070                0
+5804-HYIEZ           0.291207                0
+2969-WGHQO           0.234482                0
+7354-OIJLX           0.643549                1
+5201-USSQZ           0.310964                0
+0017-IUDMW           0.021869                0
+0599-XNYDO           0.290819                0
+2146-EGVDT           0.019234                0
+3400-ESFUW           0.012957                0
+1699-UOTXU           0.052920                0
+5813-UECBU           0.343300                0
+1231-YNDEK           0.049913                0
+9762-YAQAA           0.114309                0
+1585-MQSSU           0.180378                0
+4422-QVIJA           0.110373                0
+9560-ARGQJ           0.491520                0
+2923-ARZLG           0.081568                0
+1047-RNXZV           0.003890                0
+3957-SQXML           0.019934                0
+0743-HRVFF           0.086620                0
+
+max |probability difference| = 3.33e-16 (tolerance 1e-12); class predictions identical: True
