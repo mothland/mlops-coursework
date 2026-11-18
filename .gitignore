@@ -25,8 +25,15 @@ artifacts/*
 !artifacts/.gitkeep
 reports/*
 !reports/.gitkeep
+!reports/tp03_summary.md
+
+# MLflow local tracking storage (kept on disk for the demo, never committed)
+mlflow.db
+mlflow.db-*
+mlartifacts/
 mlruns/
 *.pkl
 *.joblib
 *.h5
 *.keras
+TD3.md

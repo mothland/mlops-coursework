@@ -1,0 +1,62 @@
+{
+  "tracking_uri": "http://127.0.0.1:5000",
+  "experiment": {
+    "name": "telco-churn-tp03",
+    "id": "1"
+  },
+  "comparison_session": "c3db6838512d",
+  "selected_candidate": "random_forest",
+  "source_run_id": "5b1981633e2946a68ce4d2f09225ea95",
+  "source_run_name": "forest-300trees-depth8",
+  "logged_model_uri": "models:/m-739141086bfe4c528d38d2908d526cd7",
+  "logged_model_id": "m-739141086bfe4c528d38d2908d526cd7",
+  "registered_model": "telco-churn",
+  "registered_version": "1",
+  "alias": "candidate",
+  "alias_uri": "models:/telco-churn@candidate",
+  "version_uri": "models:/telco-churn/1",
+  "git": {
+    "commit": "f53da912cc86195ea896b54b0582b0fe33424216",
+    "dirty": false
+  },
+  "data_sha256": "16320c9c1ec72448db59aa0a26a0b95401046bef5d02fd3aeb906448e3055e91",
+  "allocation_sha256": "bf235075965a5a6260a2d2c4b9e66b0bd39325440d6118395c140fd4e2fafeb6",
+  "threshold": 0.5,
+  "validation_metrics": {
+    "average_precision": 0.6641660575416509,
+    "precision": 0.6534296028880866,
+    "recall": 0.4839572192513369,
+    "f1": 0.5560675883256528,
+    "accuracy": 0.794889992902768,
+    "tn": 939,
+    "fp": 96,
+    "fn": 193,
+    "tp": 181
+  },
+  "candidates": {
+    "baseline": {
+      "run_id": "7fe99dc83cc04a7fb657f254b8ee026c",
+      "run_name": "baseline-most-frequent",
+      "model_uri": "models:/m-c76d2241ff4541b2a410f341e3a31630",
+      "val_average_precision": 0.2654364797728886
+    },
+    "logistic_regression": {
+      "run_id": "f07af8aad75941e3825cf8992e2a7326",
+      "run_name": "logistic-default-C1",
+      "model_uri": "models:/m-995b07a7a0da475ca05f71f475496eae",
+      "val_average_precision": 0.6474664703085159
+    },
+    "decision_tree": {
+      "run_id": "5939abada7fa48a8b9bfe8664904e455",
+      "run_name": "tree-depth5-leaf20",
+      "model_uri": "models:/m-f27d81fbeb994ed8b09ff6d33bfe6d62",
+      "val_average_precision": 0.6173000162034762
+    },
+    "random_forest": {
+      "run_id": "5b1981633e2946a68ce4d2f09225ea95",
+      "run_name": "forest-300trees-depth8",
+      "model_uri": "models:/m-739141086bfe4c528d38d2908d526cd7",
+      "val_average_precision": 0.6641660575416509
+    }
+  }
+}

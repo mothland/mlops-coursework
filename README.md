@@ -114,7 +114,7 @@ The same table is saved in `my_predictions.csv`.
 
 ```sh
 uv run python scripts/check_reload.py   # every saved model gives the same predictions after reloading
-uv run python scripts/run_tests.py      # should end with "12 passed"
+uv run python scripts/run_tests.py      # should end with "14 passed"
 ```
 
 ### If something goes wrong
@@ -255,19 +255,94 @@ pickled sklearn objects are not guaranteed to load in other versions.
 - `metadata.json` records the git commit **and** whether the working tree was dirty; a dirty run is
   not exactly identified by the commit.
 
+## Experiment tracking with MLflow (TP03)
+
+TP03 runs the **same** TP02 workflow (data, split, six features, preprocessing, metrics, threshold
+0.5 and selection rule) with one MLflow run per candidate, logs every fitted pipeline with
+`mlflow.sklearn.log_model`, registers the selected one as `telco-churn` and points the alias
+`candidate` at that version. Settings are in `configs/tp03.json`.
+
+### 1. Start the tracking server (terminal 1, keep it open)
+
+From the project root (the folder containing `README.md`):
+
+```sh
+uv run mlflow server --host 127.0.0.1 --port 5000 --backend-store-uri sqlite:///mlflow.db --artifacts-destination ./mlartifacts
+```
+
+UI: <http://127.0.0.1:5000>. If port 5000 is taken, use 5001 here, in the browser, in
+`configs/tp03.json` (`tracking.tracking_uri`) and with `--tracking-uri` in the inference command.
+
+### 2. Tracked training (terminal 2)
+
+```sh
+uv run python scripts/train_mlflow.py
+```
+
+Creates 4 runs in the experiment `telco-churn-tp03` (baseline + 3 candidates), selects the best one
+on validation average precision, registers it as a **new version** of `telco-churn` and moves the
+alias `@candidate` to it. It prints every run ID and writes `artifacts/tp03/handover.json` (run ID,
+logged model URI, registered version, alias, git commit, data hash) and `artifacts/tp03/comparison.csv`
+(exported with `mlflow.search_runs`). Commit your code first: each run records `git_commit` **and**
+`git_dirty`.
+
+What each run records:
+
+| Category | Content |
+|---|---|
+| Parameters | `model_type`, classifier settings from the config (`clf__*`) and every effective sklearn setting (`clf_effective__*`), `split_seed`, `valid_size`, `test_size`, `threshold`, `features` |
+| Metrics | `val_average_precision` (primary), `val_precision`, `val_recall`, `val_f1`, `val_accuracy`, `val_tn/fp/fn/tp`, `fit_seconds` |
+| Tags | `git_commit`, `git_dirty`, `data_sha256` (original CSV), `allocation_sha256`, `config_sha256`, `role`, `selected`, `logged_model_uri` |
+| Artifacts | `val_confusion_matrix.png/.json` (rows = actual [0, 1], columns = predicted [0, 1]), `provenance.json`, `split_allocation.csv`, `reference/` (inference sample + the training process's predictions for it) |
+| Dataset inputs | `telco_train` (context `training`) and `telco_validation` (context `validation`): customerID, the six typed features and the encoded target |
+| Model | `churn_pipeline`: the complete fitted preprocessing + classifier, with signature and input example |
+
+### 3. Inference through the alias (new process, no training)
+
+```sh
+uv run python scripts/predict_mlflow.py --input artifacts/tp03/inference_sample.csv --output reports/tp03/alias_predictions.csv --check-reference --report reports/tp03/reload_check.json
+```
+
+It resolves `models:/telco-churn@candidate` to a version and source run, loads the pipeline with
+`mlflow.sklearn.load_model`, parses the CSV with the same stateless rules as training
+(`churnlab.data.prepare_features`) and, with `--check-reference`, compares its predictions with the
+ones the training process logged in the source run. For your own customers, drop
+`--check-reference` and pass any CSV with the six feature columns (see Quick start, step 5).
+To load an exact, immutable version instead of the current alias: `models:/telco-churn/<version>`.
+
+### Where tracking data live and how to recover the selected model
+
+| Location | Holds |
+|---|---|
+| `mlflow.db` (SQLite, backend store) | Experiments, runs, params, metrics, tags, dataset records, logged-model and registry metadata (names, versions, aliases) |
+| `mlartifacts/` (artifact store) | Files: model directories (`MLmodel`, `model.pkl`, environment files, input example), confusion matrices, provenance JSON, allocation, reference predictions |
+
+Both are local to this machine and ignored by Git; stopping the server does not delete them.
+Restart the server **from the same folder with the same command** and everything is back. To
+recover the selected model: start the server, then load `models:/telco-churn@candidate` (or the
+version recorded in `reports/tp03_summary.md`) as above; the UI shows its source run under
+*Models* --> `telco-churn`.
+
+Limitations: a run ID or `models:/` URI only means something to **this** server. A classmate on
+another machine needs both `mlflow.db` and `mlartifacts/` (or a shared team server), the data CSV
+(identified by its SHA-256, not stored in MLflow), the code at the recorded commit and the locked
+environment (`uv sync --locked`). Dataset records describe the data (name, digest, schema); they do
+not store or version it. The model is pickled (cloudpickle): load only your own trusted artifacts.
+
 ## Project layout
 
 | Path | Purpose |
 |---|---|
 | `pyproject.toml` / `uv.lock` | Declared dependencies / exact resolved versions |
-| `src/churnlab/` | Importable code: `data` (load/parse), `split`, `pipeline` (unfitted builders), `evaluate`, `train` |
-| `scripts/` | Executable workflow commands (download, inspect, record environment, first model, train, predict, reload check, tests) |
-| `configs/` | Training configuration (`tp02.json`) |
+| `src/churnlab/` | Importable code: `data` (load/parse), `split`, `pipeline` (unfitted builders), `evaluate`, `train`, `tracking` (TP03 MLflow runs) |
+| `scripts/` | Executable workflow commands (download, inspect, record environment, first model, train, predict, reload check, tests; `train_mlflow`, `predict_mlflow` for TP03) |
+| `configs/` | Training configuration (`tp02.json`; `tp03.json` adds MLflow settings) |
 | `tests/` | Small behavior checks (`uv run pytest`, or `scripts/run_tests.py` to also save the log) |
 | `data/raw/` | Original input snapshot (ignored) and its source metadata (committed) |
 | `data/processed/` | Generated splits (later TPs, ignored) |
 | `artifacts/` | Generated model files and run records (ignored) |
-| `reports/` | Generated reports (ignored; copy small evidence to `evidence/`) |
+| `reports/` | Generated reports (ignored except `tp03_summary.md`; copy small evidence to `evidence/`) |
+| `mlflow.db`, `mlartifacts/` | Local MLflow tracking storage (TP03, ignored) |
 | `evidence/` | Non-sensitive TP evidence committed for submission |
 | `k8s/`, `pipelines/` | Deployment and orchestration (later TPs) |
 
